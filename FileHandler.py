@@ -3,7 +3,7 @@ class FileHandler:
 
 
     def __init__(self):
-        self.__fileName = 'pasztmek.txt'
+        self.__fileName = 'log.txt'
 
 
     def writeToFile(self, data:str):
