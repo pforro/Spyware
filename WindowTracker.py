@@ -51,7 +51,7 @@ class WindowTracker(Thread):
 
 if __name__ == "__main__":
     from FileHandler import FileHandler
-    from os import system
+    from os import system, getcwd
     system('cls')
     fileHandler = FileHandler()
     screenshot = Screenshot()

