@@ -1,12 +1,48 @@
+﻿
+
+------------------------------main.py - keylogger - Visual Studio Code------------------------------
+Key.cmdKey.tab
+
+----------------------------------------------------------------------------------------------------
+Key.tab
+
+------------------------------main.py - keylogger - Visual Studio Code------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+Key.cmd
+
+---------------------------------------------Start menü---------------------------------------------
+'n''o''t''e''p''a''d'Key.enter
+
+----------------------------------------------------------------------------------------------------
+
+
+---------------------------------------Névtelen - Jegyzettömb---------------------------------------
+'h''e''l''l''o'Key.space'b''e''l''l''o'Key.space'm''i'Key.space'a'Key.space'h''l''e''y''z'Key.backspaceKey.backspaceKey.backspaceKey.backspace'e''l''y''z''e''t'Key.space'f''a''s''z''i''k''a''m'Key.shift_r','Key.ctrl_l's'
+
+-------------------------------------------Mentés másként-------------------------------------------
+
+
+---------------------------------------Névtelen - Jegyzettömb---------------------------------------
+
+
+--------------------------------------------Jegyzettömb---------------------------------------------
+
+
+------------------------------main.py - keylogger - Visual Studio Code------------------------------
+Key.cmdKey.tab
+
+----------------------------------------------------------------------------------------------------
 
 
 ------------------------------main.py - keylogger - Visual Studio Code------------------------------
 
 
----------------------------------------------keylogger----------------------------------------------
+------------------------------main.py - keylogger - Visual Studio Code------------------------------
+Key.cmd
 
-
------------------------------------------Untitled - Notepad-----------------------------------------
-Key.enterKey.shift_r'k''u''r''v''a'Key.space'g''e''c''i'Key.space'a''n''y''a''d''a''t'Key.space'a''z''t'Key.space'b''a''s''z''d'Key.space's''z''a''j''b''a'Key.space't''e'Key.space'k''i''s'Key.space'b''u''z''i'Key.space'g''y''e''r''e''k'Key.shift_r'4'
+---------------------------------------------Start menü---------------------------------------------
+'n''o''t''e'Key.backspaceKey.backspaceKey.backspaceKey.backspace'h''e''l''l''o'Key.space'k''r''i''s''z''t''i''a''n'Key.space's''z''e''r''e''t''l''e''k'Key.space'm''e''g'Key.space'a'Key.space'c''i''g''i''e''d'Key.backspaceKey.backspaceKey.backspace'i''d''e''t'Key.space'i''s'Key.space's''e''g''g'Key.space's''e''g''g'Key.space'p''i''n''a'Key.space's''e''g''g''h'
 
 ------------------------------main.py - keylogger - Visual Studio Code------------------------------

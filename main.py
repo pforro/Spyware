@@ -16,6 +16,7 @@ def main():
     screenshot.start()
     windowTracker.start()
     
+    
 
 
 if __name__ == "__main__":
