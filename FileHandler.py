@@ -1,7 +1,6 @@
 
 class FileHandler:
 
-
     def __init__(self):
         self.__fileName = 'log.txt'
 
