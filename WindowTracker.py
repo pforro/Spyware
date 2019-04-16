@@ -1,7 +1,7 @@
 import win32gui, time, win32process
 from threading import Thread
 from Screenshot import Screenshot
-from FileHandler import FileHandler
+from Util import Util
 
 
 
@@ -32,7 +32,7 @@ class WindowTracker(Thread):
             windowTitle = '\n'*2 + f'{self.__activeWindow}'.center(100,'-') + '\n'
             if self.__config.debug:
                 print(windowTitle)
-            FileHandler.fileOut(self.__config.logPath + self.__config.logFileName, windowTitle)
+            Util.fileOut(self.__config.logPath + self.__config.logFileName, windowTitle)
 
 
 

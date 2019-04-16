@@ -2,7 +2,7 @@ from subprocess import check_output
 import getpass
 
 
-class FileHandler:
+class Util:
   
     @staticmethod
     def fileOut(file, data:str):
@@ -23,10 +23,3 @@ class FileHandler:
         except Exception:
             result = 'Shell command execution failed!'
         return result
-
-
-
-if __name__ == "__main__":
-    command = 'cd c:\ && rmdir apacukafundaluka && dir'
-    print(FileHandler.executeShellCommand(command))
-
