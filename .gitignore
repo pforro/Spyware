@@ -3,3 +3,4 @@ build/
 uninstaller/
 *.spec
 __pycache__/
+.vscode/
