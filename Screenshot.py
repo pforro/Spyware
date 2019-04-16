@@ -1,6 +1,5 @@
 from PIL import ImageGrab
 from os import system, path
-import time, getpass
 from Configuration import Configuration
 
 

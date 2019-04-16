@@ -1,6 +1,5 @@
 import shutil
 from pynput.keyboard import Key, Listener
-from datetime import datetime
 from threading import Thread
 from Util import Util
 
