@@ -6,10 +6,9 @@ from Screenshot import Screenshot
 
 class WindowTracker(Thread):
 
-
     def __init__(self, screenshot, filehandler):
         Thread.__init__(self, name='window tracking')
-        self.__debug = True
+        self.__debug = False
         self.__activeWindow = None
         self.__samplingFrequency = 0.1
         self.__screenshot = screenshot

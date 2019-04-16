@@ -1,8 +1,11 @@
+import getpass
+
+
 
 class FileHandler:
 
     def __init__(self):
-        self.__fileName = 'log.txt'
+        self.__fileName = f'c:\\Users\\{getpass.getuser()}\\AppData\\Roaming\\tempData\\log.txt'
 
 
     def writeToFile(self, data:str):

