@@ -1,29 +1,20 @@
 from PIL import ImageGrab
 from os import system, path
 import time, getpass
-
+from Configuration import Configuration
 
 
 class Screenshot():
 
-    def __init__(self):
-        self.__active = True
-        self.__screenshotFrequency = 5
+    def __init__(self, config: Configuration):
+        self.__config = config
         self.__screenshotCounter = 0
-        self.__filePath = f'c:\\Users\\{getpass.getuser()}\\AppData\\Roaming\\tempData\\pics\\'
 
 
 
-    def takeScreenshot(self): 
+    def takeScreenshot(self) -> None: 
         pic = ImageGrab.grab()
         self.__screenshotCounter += 1
-        print(self.__filePath + f'\\{self.__screenshotCounter}.jpg')
-        pic.save(self.__filePath + f'\\{self.__screenshotCounter}.jpg')
-        print(f'Screenshot-{self.__screenshotCounter} taken')
-
-
-
-
-if __name__ == "__main__":
-    system('cls')
-    screenshot = Screenshot()
+        pic.save(self.__config.screenshotPath + f'\\{self.__screenshotCounter}.jpg')
+        if self.__config.debug:
+            print(f'Screenshot-{self.__screenshotCounter} taken')

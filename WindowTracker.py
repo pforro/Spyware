@@ -1,31 +1,28 @@
 import win32gui, time, win32process
 from threading import Thread
 from Screenshot import Screenshot
+from FileHandler import FileHandler
 
 
 
 class WindowTracker(Thread):
 
-    def __init__(self, screenshot, filehandler):
+    def __init__(self, config, screenshot):
         Thread.__init__(self, name='window tracking')
-        self.__debug = False
-        self.__activeWindow = None
-        self.__samplingFrequency = 0.1
+        self.__config = config
         self.__screenshot = screenshot
+        self.__activeWindow = None
         self.__screenshotTimer = 0
-        self.__screenshotFrequency = 50
-        self.__screenshotTrigger = ['facebook']
-        self.__filehandler = filehandler
 
 
 
     def run(self):
-        while True:
-            time.sleep(self.__samplingFrequency)
+        while self.__config.windowTrackingIsActive:
+            time.sleep(self.__config.samplingFrequency)
             activeWindow = win32gui.GetForegroundWindow()
             activeWindowText = win32gui.GetWindowText(activeWindow)
             self.__examineWindow(activeWindowText)
-            self.checkTrigger(activeWindowText)
+            self.__screenshotHandler(activeWindowText)
 
 
 
@@ -33,33 +30,20 @@ class WindowTracker(Thread):
         if self.__activeWindow != activeWindowTitle:
             self.__activeWindow = activeWindowTitle
             windowTitle = '\n'*2 + f'{self.__activeWindow}'.center(100,'-') + '\n'
-            if self.__debug:
+            if self.__config.debug:
                 print(windowTitle)
-            else:
-                self.__filehandler.writeToFile(windowTitle)
+            FileHandler.fileOut(self.__config.logPath + self.__config.logFileName, windowTitle)
 
 
 
-    def checkTrigger(self, activeWindowText:str):
-        for trigger in self.__screenshotTrigger:
+    def __screenshotHandler(self, activeWindowText:str):
+        for trigger in self.__config.screenshotTrigger:
             if trigger in activeWindowText.lower():
                 self.__screenshotTimer += 1
-                if self.__debug:
+                if self.__config.debug:
                     print(self.__screenshotTimer)
-                if self.__screenshotTimer >= 50:
+                if self.__screenshotTimer >= self.__config.screenshotFrequency:
                     self.__screenshot.takeScreenshot()
                     self.__screenshotTimer = 0
             else:
                 self.__screenshotTimer = 0
-
-
-
-
-if __name__ == "__main__":
-    from FileHandler import FileHandler
-    from os import system, getcwd
-    system('cls')
-    fileHandler = FileHandler()
-    screenshot = Screenshot()
-    windowTracker = WindowTracker(screenshot, fileHandler)
-    windowTracker.start()

