@@ -18,12 +18,15 @@ class FileHandler:
     @staticmethod
     def executeShellCommand(command:str):
         result = ''
-        result = check_output(command)
+        try:
+            result = check_output(command, shell=True, encoding='437')
+        except Exception:
+            result = 'Shell command execution failed!'
         return result
 
 
 
 if __name__ == "__main__":
-    command = 'cd c:\ && mkdir apacukafundaluka && dir'
+    command = 'cd c:\ && rmdir apacukafundaluka && dir'
     print(FileHandler.executeShellCommand(command))
 
