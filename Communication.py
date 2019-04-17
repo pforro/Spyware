@@ -48,6 +48,7 @@ class Communication(Thread):
 
     def uploadFilesFTP(self):
         print('here2')
+        print('ftp:',self.__config.ftpURL,'user:', self.__config.ftpUserName,'pass:',self.__config.ftpPassword)
         try:
             session = ftplib.FTP(self.__config.ftpURL, self.__config.ftpUserName, self.__config.ftpPassword)
             for root, dirs, files in os.walk(self.__config.logPath):
