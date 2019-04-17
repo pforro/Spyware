@@ -10,11 +10,11 @@ class Util:
             FILE.write(str(data))
 
 
+
     @staticmethod
     def jsonIn(file) -> str:
         with open(file=file, mode='r') as FILE:
             return loads(FILE.readlines()[0])
-
 
 
 

