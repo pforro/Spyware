@@ -42,8 +42,5 @@ class WindowTracker(Thread):
                 self.__screenshotTimer += 1
                 if self.__config.debug:
                     print(self.__screenshotTimer)
-                if self.__screenshotTimer >= self.__config.screenshotFrequency:
+                if self.__screenshotTimer % self.__config.screenshotFrequency == 0:
                     self.__screenshot.takeScreenshot()
-                    self.__screenshotTimer = 0
-            else:
-                self.__screenshotTimer = 0
