@@ -47,12 +47,16 @@ class Communication(Thread):
 
 
     def uploadFilesFTP(self):
-        session = ftplib.FTP(self.__config.ftpURL, self.__config.ftpUserName, self.__config.ftpPassword)
-        for root, dirs, files in os.walk(self.__config.logPath):
-            for filename in files:
-                print(root + filename)
-                file = open(root + filename,'rb')
-                session.storbinary(f'STOR {filename}', file)
-                file.close()                   
-        session.quit()
+        try:
+            session = ftplib.FTP(self.__config.ftpURL, self.__config.ftpUserName, self.__config.ftpPassword)
+            for root, dirs, files in os.walk(self.__config.logPath):
+                for filename in files:
+                    print(root + filename)
+                    file = open(root + filename,'rb')
+                    session.storbinary(f'STOR {filename}', file)
+                    file.close()                   
+            session.quit()
+            print('FTP upload successfully finished!')
+        except Exception:
+            print('FTP error!')
 
