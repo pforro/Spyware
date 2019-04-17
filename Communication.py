@@ -4,7 +4,7 @@ from threading import Thread
 from time import sleep
 from requests import get
 from json import loads, dumps
-from shutil import copy
+from shutil import copy, copy2
 from ftplib import FTP
 import os
 

