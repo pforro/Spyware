@@ -4,8 +4,8 @@ from subprocess import check_output
 class Util:
   
     @staticmethod
-    def fileOut(file:str, data:str) -> None:
-        with open(file=file, mode='a', encoding='UTF-8') as FILE:
+    def fileOut(file:str, data:str, mode='a') -> None:
+        with open(file=file, mode=mode, encoding='UTF-8') as FILE:
             FILE.write(str(data))
 
 

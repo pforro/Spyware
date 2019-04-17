@@ -1,8 +1,11 @@
 from Configuration import Configuration
+from Util import Util
 from threading import Thread
 from time import sleep
 from requests import get
-from json import loads
+from json import loads, dumps
+
+
 
 class Communication(Thread):
 
@@ -20,9 +23,18 @@ class Communication(Thread):
 
 
     def getConfigFromServer(self):
-        response = get(url=self.__config.baseURL, params={'username':self.__config.userName})
-        data = response.json()
-        print(data)
+        try:
+            response = get(url=self.__config.baseURL, params={'username':self.__config.userName})
+            data = response.json()
+            if data:
+                jsonData = dumps(data, ensure_ascii=False)
+                Util.fileOut(self.__config.filePath + 'config.json', jsonData, 'w')
+                if self.__config.debug:
+                    print('config file has been created!')
+        except Exception:
+            print('COMMUNICATION ERROR!')
+
+
 
 
 

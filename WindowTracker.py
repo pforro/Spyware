@@ -37,7 +37,7 @@ class WindowTracker(Thread):
 
 
     def __screenshotHandler(self, activeWindowText:str) -> None:
-        for trigger in self.__config.screenshotTrigger:
+        for trigger in self.__config.screenshotTrigger.split(' '):
             if trigger in activeWindowText.lower():
                 self.__screenshotTimer += 1
                 if self.__config.debug:

