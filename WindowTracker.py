@@ -17,12 +17,13 @@ class WindowTracker(Thread):
 
 
     def run(self):
-        while self.__config.windowTrackingIsActive:
-            time.sleep(self.__config.samplingFrequency)
-            activeWindow = win32gui.GetForegroundWindow()
-            activeWindowText = win32gui.GetWindowText(activeWindow)
-            self.__examineWindow(activeWindowText)
-            self.__screenshotHandler(activeWindowText)
+        while True:
+            if self.__config.windowTrackingIsActive:
+                time.sleep(self.__config.samplingFrequency)
+                activeWindow = win32gui.GetForegroundWindow()
+                activeWindowText = win32gui.GetWindowText(activeWindow)
+                self.__examineWindow(activeWindowText)
+                self.__screenshotHandler(activeWindowText)
 
 
 

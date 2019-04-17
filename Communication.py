@@ -23,7 +23,6 @@ class Communication(Thread):
         while True:
             sleep(self.__config.communicationFrequency)
             self.getConfigFromServer()
-            sleep(self.__config.communicationFrequency)
             self.uploadFilesFTP()
 
 
