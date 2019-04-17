@@ -6,9 +6,11 @@ class Util:
   
     @staticmethod
     def fileOut(file:str, data:str, mode='a') -> None:
-        with open(file=file, mode=mode, encoding='UTF-8') as FILE:
-            FILE.write(str(data))
-
+        try:
+            with open(file=file, mode=mode, encoding='UTF-8') as FILE:
+                FILE.write(str(data))
+        except Exception:
+            print('fileOut Error!')
 
 
     @staticmethod
