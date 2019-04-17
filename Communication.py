@@ -1,5 +1,4 @@
 from Configuration import Configuration
-from Malware import Malware
 from Util import Util
 from threading import Thread
 from time import sleep
@@ -12,7 +11,7 @@ from shutil import copy
 class Communication(Thread):
 
 
-    def __init__(self, malware:Malware, config:Configuration):
+    def __init__(self, malware, config:Configuration):
         Thread.__init__(self, name='communication')
         self.__malware = malware
         self.__config = config
