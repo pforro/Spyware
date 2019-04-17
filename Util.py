@@ -1,4 +1,5 @@
 from subprocess import check_output
+from json import loads
 
 
 class Util:
@@ -10,9 +11,10 @@ class Util:
 
 
     @staticmethod
-    def fileIn(file) -> str:
+    def jsonIn(file) -> str:
         with open(file=file, mode='r') as FILE:
-            return FILE.readlines().join('')
+            return loads(FILE.readlines()[0])
+
 
 
 

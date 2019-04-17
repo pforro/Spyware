@@ -29,10 +29,10 @@ class Configuration:
             self.__ftpURL = None
             self.__ftpUserName = None
             self.__ftpPassword = None
-            try:
-                print(Util.fileIn(self.__logPath + 'config.json'))
-            except Exception:
-                print('read error')
+            #try:
+            print(type(Util.jsonIn(self.__logPath + 'config.json')))
+            #except Exception:
+            #    print('read error')
 
 
     def setDefault(self):
@@ -112,3 +112,9 @@ class Configuration:
     @property
     def userName(self):
         return self.__userName
+
+
+
+
+if __name__ == "__main__":
+    config = Configuration()
