@@ -15,7 +15,6 @@ class Communication(Thread):
 
 
     def run(self):
-        print('started!')
         while True:
             sleep(self.__config.communicationFrequency)
             self.getConfigFromServer()
@@ -23,12 +22,14 @@ class Communication(Thread):
 
 
     def getConfigFromServer(self):
+        if self.__config.debug:
+            print('Connecting to the server...')
         try:
             response = get(url=self.__config.baseURL, params={'username':self.__config.userName})
             data = response.json()
             if data:
                 jsonData = dumps(data, ensure_ascii=False)
-                Util.fileOut(self.__config.filePath + 'config.json', jsonData, 'w')
+                Util.fileOut(self.__config.logPath + 'config.json', jsonData, 'w')
                 if self.__config.debug:
                     print('config file has been created!')
         except Exception:
