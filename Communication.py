@@ -10,6 +10,7 @@ import os
 
 
 
+
 class Communication(Thread):
 
 
@@ -39,7 +40,7 @@ class Communication(Thread):
                 if self.__config.debug:
                     print('Config file has been created!')
                 self.__config.setAttributes()
-        except Exception:
+        except Exception as error:
             print('COMMUNICATION ERROR!')
 
 
@@ -55,6 +56,6 @@ class Communication(Thread):
                     os.remove(root + filename)          
             ftp.quit()
             print('FTP upload successfully finished!')
-        except Exception:
-            print('FTP error!')
+        except Exception as error:
+            print('FTP error!: ', error)
 

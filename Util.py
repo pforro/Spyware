@@ -27,8 +27,8 @@ class Util:
         result = ''
         try:
             result = check_output(command, shell=True, encoding='437')
-        except Exception:
-            result = 'Shell command execution failed!'
+        except Exception as error:
+            result = error
         return result
 
 

