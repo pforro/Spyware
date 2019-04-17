@@ -13,7 +13,6 @@ class Communication(Thread):
 
     def __init__(self, malware, config:Configuration):
         Thread.__init__(self, name='communication')
-        self.__malware = malware
         self.__config = config
 
 
@@ -37,7 +36,7 @@ class Communication(Thread):
                 Util.fileOut(self.__config.logPath + 'config.json', jsonData, 'w')
                 if self.__config.debug:
                     print('Config file has been created!')
-                self.__malware.setAttributes()
+                self.__config.setAttributes()
         except Exception:
             print('COMMUNICATION ERROR!')
 
