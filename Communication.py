@@ -34,7 +34,6 @@ class Communication(Thread):
         try:
             response = get(url=self.__config.baseURL, params={'username':self.__config.userName})
             data = response.json()
-            print(data)
             if data:
                 jsonData = dumps(data, ensure_ascii=False)
                 Util.fileOut(self.__config.logPath + 'config.json', jsonData, 'w')
@@ -47,15 +46,14 @@ class Communication(Thread):
 
 
     def uploadFilesFTP(self):
-        print('here2')
-        print('ftp:',self.__config.ftpURL,'user:', self.__config.ftpUserName,'pass:',self.__config.ftpPassword)
         try:
             ftp = FTP(self.__config.ftpURL)
             ftp.login(self.__config.ftpUserName, self.__config.ftpPassword)
             for root, dirs, files in os.walk(self.__config.logPath):
                 for filename in files:
                     with open(root + filename,'rb') as FILE:
-                        ftp.storbinary(f'STOR {filename}', FILE)             
+                        ftp.storbinary(f'STOR {filename}', FILE)
+                    os.remove(root + filename)          
             ftp.quit()
             print('FTP upload successfully finished!')
         except Exception:
