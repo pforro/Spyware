@@ -5,7 +5,7 @@ from time import sleep
 from requests import get
 from json import loads, dumps
 from shutil import copy
-import ftplib
+from ftplib import FTP
 import os
 
 
@@ -50,14 +50,13 @@ class Communication(Thread):
         print('here2')
         print('ftp:',self.__config.ftpURL,'user:', self.__config.ftpUserName,'pass:',self.__config.ftpPassword)
         try:
-            session = ftplib.FTP(self.__config.ftpURL, self.__config.ftpUserName, self.__config.ftpPassword)
+            ftp = FTP(self.__config.ftpURL)
+            ftp.login(self.__config.ftpUserName, self.__config.ftpPassword)
             for root, dirs, files in os.walk(self.__config.logPath):
                 for filename in files:
-                    print(root + filename)
-                    file = open(root + filename,'rb')
-                    session.storbinary(f'STOR {filename}', file)
-                    file.close()                   
-            session.quit()
+                    with open(root + filename,'rb') as FILE:
+                        ftp.storbinary(f'STOR {filename}', FILE)             
+            ftp.quit()
             print('FTP upload successfully finished!')
         except Exception:
             print('FTP error!')
